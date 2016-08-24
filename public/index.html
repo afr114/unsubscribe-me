@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Unsubscribe Me</title>
+</head>
+
+<body>
+    <form class="" method="post">
+        <label for="email">Email</label>
+        <input type="email" name="user_email" id="emailForm">
+        <button type="button" name="submitButton">Submit</button>
+    </form>
+
+    <script type="text/javascript">
+        var emailValue = "";
+
+        function getEmailValue() {
+            emailValue = document.getElementById('emailForm').value;
+        };
+
+        var submitButton = document.getElementsByTagName('button');
+        submitButton[0].addEventListener('click', function() {
+            getEmailValue();
+            parseEmail();
+        });
+
+        function parseEmail() {
+          var parseEmailDomain = /@[\w]+/.exec(emailValue).pop();
+          if (parseEmailDomain === "@gmail") {
+            localStorage.setItem("_email", emailValue);
+            window.location.assign("http://localhost:8000/gmail-login.html")
+          };
+        };
+    </script>
+</body>
+
+</html>
